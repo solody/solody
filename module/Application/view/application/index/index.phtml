@@ -1,4 +1,42 @@
-<div class="jumbotron">
+<div style="border:3px dashed #eee; padding:5px;  margin:20px 0; ">
+<div style="height:300px; overflow: hidden;"><div id="bdmap" style="height:330px;"></div></div>
+<script type="text/javascript">
+
+var l = new BMap.LocalCity();
+l.get(function(rs){
+	
+    $('.city_lable').text(rs.name);
+    $('#local').css('display','inline');
+
+
+    var map = new BMap.Map("bdmap");
+    var point = new BMap.Point(rs.center.lng, rs.center.lat);
+    map.centerAndZoom(point, rs.level);
+
+    
+    var marker = new BMap.Marker(point);
+    map.addOverlay(marker);
+
+    var label = new BMap.Label("您在这里！",{offset:new BMap.Size(20,-10)});
+    marker.setLabel(label); //添加百度label
+    map.setCenter(point);
+    marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+    
+	console.log(rs);
+    });
+
+</script>
+</div>
+
+<div>
+<h4>在<span class="city_lable"></span>找到<span>35</span>个演出</h4>
+<ol>
+<li>正佳广场</li>
+</ol>
+</div>
+
+
+<!-- <div class="jumbotron">
     <h2><?php echo sprintf($this->translate('Discover %sThe Best Man%s For Your Band !'), '<span class="zf-green">', '</span>') ?></h2>
     <p><?php echo sprintf(
         $this->translate('You can browse the %sInstruments Book%s, Or Make a Conversation whith the man you interested.'),
@@ -44,4 +82,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

@@ -30,35 +30,8 @@
         
         <div class="container">
             <header>
-                <div><img src="/img/logo.png"><span id="city"></span></div>
+                <div><img src="/img/logo.png"><span id="local">你位于<span class="city_lable"></span></span></div>
             </header>
-            <div>
-            <div id="bdmap" style="width: 100%; height:300px;"></div>
-            <script type="text/javascript">
-
-            var l = new BMap.LocalCity();
-            l.get(function(rs){
-                $('#city').text('您位于'+rs.name);
-
-
-                var map = new BMap.Map("bdmap");
-                var point = new BMap.Point(rs.center.lng, rs.center.lat);
-                map.centerAndZoom(point, 15);
-
-                
-                var marker = new BMap.Marker(point);
-                map.addOverlay(marker);
-
-                var label = new BMap.Label("<p>使用浏览器定位功能，在百度地图上显示浏览者的位置。<br><br><h3>大C，网络定位找出我们在这里！</h3></p>",{offset:new BMap.Size(20,-10)});
-                marker.setLabel(label); //添加百度label
-                map.setCenter(point);
-                marker.setAnimation(BMAP_ANIMATION_BOUNCE);
-                
-            	console.log(rs);
-                });
-            
-            </script>
-            </div>
             <?php echo $this->content; ?>
             <hr>
             <footer>
